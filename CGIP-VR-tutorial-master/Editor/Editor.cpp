@@ -219,7 +219,6 @@ glm::vec4 RayCasting(int16_t* d_vol, glm::vec4 cur, glm::vec3 dir, int width, in
 	float temp = 0.0f;
 	glm::vec4 rgba;
 
-	
 
 	double cin = 0, cout = 0, csrc = 0, asrc = 0, ain = 0, aout = 0, val = 0;
 	
@@ -245,9 +244,9 @@ glm::vec4 RayCasting(int16_t* d_vol, glm::vec4 cur, glm::vec3 dir, int width, in
 
 		float intensity = d_vol[(int)floor(z) * width * height + (int)floor(y) * height + (int)floor(x)]; // volume 에서 xyz 해당하는 intensity
 		//float intensity = getInterpolation(d_vol, width, height, depth, now.x, now.y, now.z);
-		//val = (intensity - INT16_MIN ) / (INT16_MAX - INT16_MIN); // normalize 0-1.... temp transfer func.. (linear)
+		val = (intensity - INT16_MIN ) / (INT16_MAX - INT16_MIN); // normalize 0-1.... temp transfer func.. (linear)
 		
-		val = ((double)intensity * (double)intensity) / ((double)INT16_MIN * (double)INT16_MIN); //(squared) ...temp transfer func...
+		//val = ((double)intensity * (double)intensity) / ((double)INT16_MIN * (double)INT16_MIN); //(squared) ...temp transfer func...
 	
 		
 		if (max_Intensity < val) { // Max Intensity 
@@ -255,9 +254,9 @@ glm::vec4 RayCasting(int16_t* d_vol, glm::vec4 cur, glm::vec3 dir, int width, in
 		}
 
 
-		if(val > 0 && val < 0.4) { csrc = val/100000; asrc = val / 5; }
-		else if (val >= 0.4 && val < 0.7) { csrc = val  ; asrc = val/5 ; }
-		else { csrc = val; asrc = val/3; }
+		//if(val > 0 && val < 0.4) { csrc = val/100000; asrc = val / 5; }
+		//else if (val >= 0.4 && val < 0.7) { csrc = val  ; asrc = val/5 ; }
+		//else { csrc = val; asrc = val/3; }
 	
 
 		if (ain > 0.99999) {
